@@ -1,0 +1,27 @@
+{
+  "name": "silog-syntax",
+  "displayName": "SILOG Syntax Highlighting",
+  "description": "Support for the SILOG scripting language",
+  "version": "0.0.1",
+  "publisher": "user",
+  "engines": {
+    "vscode": "^1.50.0"
+  },
+  "contributes": {
+    "languages": [
+      {
+        "id": "silog",
+        "aliases": ["SILOG"],
+        "extensions": [".silog"],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "silog",
+        "scopeName": "source.silog",
+        "path": "./syntaxes/silog.tmLanguage.json"
+      }
+    ]
+  }
+}

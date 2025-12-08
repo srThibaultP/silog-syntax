@@ -1,0 +1,36 @@
+{
+  "name": "SILOG",
+  "scopeName": "source.silog",
+  "patterns": [
+    {
+      "name": "keyword.control.silog",
+      "match": "\\[(SI|FINSI|ALORS|FINALORS|SINON|FINSINON|POURCHAQUE|FINPOURCHAQUE|EXTRAIRE|FINEXTRAIRE|TANTQUE|FINTANTQUE|CONDITION|FINCONDITION)\\]"
+    },
+    {
+      "name": "support.function.silog",
+      "match": "\\b(SDVA|SDVE|SDVR|SEA|SEE|SAM|SEFA|SER|SLA|CHR\\$|CJUSTIFY\\$|LEFT\\$|RIGHT\\$)\\b"
+    },
+    {
+      "name": "comment.line.double-slash.silog",
+      "begin": "//",
+      "beginCaptures": {
+        "0": { "name": "punctuation.definition.comment.silog" }
+      },
+      "end": "$",
+      "name": "comment.line.double-slash.silog"
+    },
+    {
+      "name": "string.quoted.double.silog",
+      "begin": "\"",
+      "end": "\"",
+      "patterns": [
+        {
+          "match": "\\.",
+          "name": "constant.character.escape.silog"
+        }
+      ]
+    }
+  ],
+  "repository": {},
+  "scopeName": "source.silog"
+}
