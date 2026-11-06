@@ -1,0 +1,26 @@
+// Exemple de fichier évènement SILOG
+SDVA("ComptesClients$")
+vu$(0)="C.C.M"
+SER(""," INSERT INTO MACRO_AOCC (CodeClient) SELECT CodeClient FROM AOCC WHERE CodeClient=@vu$(0)","")
+
+[SI]
+  CLI.NomClient=""
+  AND g_objet%=2
+[FINSI]
+[ALORS]
+  CLI.NomClient=m_CLI.NomClient
+  SLP("","\\Alice5\Alip\"+i44701$+".doc",0,0,0)
+[FINALORS]
+[SINON]
+  g_err%=1  // erreur
+[FINSINON]
+
+[POURCHAQUE]
+  [EXTRAIRE]
+    Line : ComptesClients$
+  [FINEXTRAIRE]
+  SAM("line", LEFT$(Line,3))
+[FINPOURCHAQUE]
+
+MAIL.NewMessage()
+x=ROUND(3.14159,2)+ABS(-1)
