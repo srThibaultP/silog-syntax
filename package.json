@@ -20,6 +20,8 @@
     "Programming Languages"
   ],
   "keywords": [
+    "evt",
+    "act",
     "silog",
     "syntax",
     "highlighting"
@@ -29,7 +31,7 @@
       {
         "id": "silog",
         "aliases": ["SILOG", "silog"],
-        "extensions": [".silog"],
+        "extensions": [".evt", ".act"],
         "configuration": "./language-configuration.json"
       }
     ],
