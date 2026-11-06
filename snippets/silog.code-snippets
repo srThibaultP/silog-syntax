@@ -1,0 +1,75 @@
+{
+  "Condition SI / ALORS / SINON": {
+    "prefix": "si",
+    "description": "Bloc conditionnel [SI] [ALORS] [SINON]",
+    "body": [
+      "[SI]",
+      "\t${1:condition}",
+      "[FINSI]",
+      "[ALORS]",
+      "\t${2}",
+      "[FINALORS]",
+      "[SINON]",
+      "\t${3}",
+      "[FINSINON]"
+    ]
+  },
+  "Condition SI / ALORS": {
+    "prefix": "sialors",
+    "description": "Bloc conditionnel [SI] [ALORS] sans [SINON]",
+    "body": [
+      "[SI]",
+      "\t${1:condition}",
+      "[FINSI]",
+      "[ALORS]",
+      "\t${2}",
+      "[FINALORS]"
+    ]
+  },
+  "Boucle TANTQUE": {
+    "prefix": "tantque",
+    "description": "Boucle [TANTQUE]",
+    "body": [
+      "[TANTQUE]",
+      "\t[CONDITION]",
+      "\t\t${1:condition}",
+      "\t[FINCONDITION]",
+      "\t${2}",
+      "[FINTANTQUE]"
+    ]
+  },
+  "POURCHAQUE sur texte multi-ligne": {
+    "prefix": "pourchaque",
+    "description": "Parcourt chaque ligne d'un texte multi-ligne",
+    "body": [
+      "[POURCHAQUE]",
+      "\t[EXTRAIRE]",
+      "\t\t${1:ligne\\$} : ${2:texte\\$}",
+      "\t[FINEXTRAIRE]",
+      "\t${3}",
+      "[FINPOURCHAQUE]"
+    ]
+  },
+  "POURCHAQUE sur requête SQL": {
+    "prefix": "pourchaquesql",
+    "description": "Parcourt chaque ligne retournée par une requête SQL",
+    "body": [
+      "[POURCHAQUE]",
+      "\t[EXTRAIRE]",
+      "\t\t${1:var1\\$};${2:var2\\$} : SQL=\"SELECT ${3:Col1}, ${4:Col2} FROM ${5:TABLE}\"",
+      "\t[FINEXTRAIRE]",
+      "\t${6}",
+      "[FINPOURCHAQUE]"
+    ]
+  },
+  "Message SAM": {
+    "prefix": "sam",
+    "description": "Affiche un message",
+    "body": "SAM(\"${1:titre}\", ${2:message\\$}, ${3:0})"
+  },
+  "Requête SER": {
+    "prefix": "ser",
+    "description": "Exécute une requête SQL",
+    "body": "SER(\"${1:variable}\", \"${2:SELECT ...}\", \"\")"
+  }
+}
