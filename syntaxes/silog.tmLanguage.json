@@ -1,16 +1,38 @@
 {
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
   "name": "SILOG",
   "scopeName": "source.silog",
   "patterns": [
     {
-      "name": "keyword.control.silog",
-      "match": "\\[(SI|FINSI|ALORS|FINALORS|SINON|FINSINON|POURCHAQUE|FINPOURCHAQUE|EXTRAIRE|FINEXTRAIRE|TANTQUE|FINTANTQUE|CONDITION|FINCONDITION)\\]"
+      "include": "#comment"
     },
     {
-      "name": "support.function.silog",
-      "match": "\\b(SDVA|SDVE|SDVR|SEA|SEE|SAM|SEFA|SER|SLA|CHR\\$|CJUSTIFY\\$|LEFT\\$|RIGHT\\$)\\b"
+      "include": "#blocks"
     },
     {
+      "include": "#string"
+    },
+    {
+      "include": "#string-single"
+    },
+    {
+      "include": "#functions"
+    },
+    {
+      "include": "#builtins"
+    },
+    {
+      "include": "#variables"
+    },
+    {
+      "include": "#constants"
+    },
+    {
+      "include": "#operators"
+    }
+  ],
+  "repository": {
+    "comment": {
       "name": "comment.line.double-slash.silog",
       "begin": "//",
       "beginCaptures": {
@@ -20,18 +42,115 @@
       },
       "end": "$"
     },
-    {
+    "blocks": {
+      "name": "keyword.control.silog",
+      "match": "\\[(SI|FINSI|ALORS|FINALORS|SINON|FINSINON|POURCHAQUE|FINPOURCHAQUE|EXTRAIRE|FINEXTRAIRE|TANTQUE|FINTANTQUE|CONDITION|FINCONDITION)\\]"
+    },
+    "string": {
       "name": "string.quoted.double.silog",
       "begin": "\"",
-      "end": "\"",
+      "beginCaptures": {
+        "0": {
+          "name": "punctuation.definition.string.begin.silog"
+        }
+      },
+      "end": "(\")|$",
+      "endCaptures": {
+        "1": {
+          "name": "punctuation.definition.string.end.silog"
+        }
+      },
       "patterns": [
         {
-          "match": "\\\\.",
-          "name": "constant.character.escape.silog"
+          "include": "#sql-variable"
+        }
+      ]
+    },
+    "string-single": {
+      "name": "string.quoted.single.silog",
+      "begin": "'",
+      "end": "(')|$",
+      "patterns": [
+        {
+          "include": "#sql-variable"
+        }
+      ]
+    },
+    "sql-variable": {
+      "name": "variable.other.interpolated.silog",
+      "match": "@[A-Za-z_][A-Za-z0-9_.]*[$%]?(?:\\(\\s*\\w+\\s*\\))?"
+    },
+    "functions": {
+      "patterns": [
+        {
+          "name": "support.function.silog",
+          "match": "(?i)\\b(SilActionForceTriParLibelle|SilAfficherListeDocumentGED|SilRafraichirAppliContenue|SilActionDesactiverFiltre|SilExecuterFichierActions|DroitExecuterParametrage|SilDeclareVariableEntier|SilExecuterFichierScript|SilGetDroitVisualisation|SilLancerApplicationLiee|SilLancerApplicationLiée|SilComposantInstruction|SilDeclareVariableAlpha|SilGetDroitModification|SilActionPassageEntete|SilAfficherDocumentGED|SilDeclareVariableReel|SilExporterDonneesUTF8|SilGetDroitSuppression|SilRafraichirComposant|StringListExtractLines|SilActionAfficheCorps|SilActionModification|SilActionPassageCorps|SilExecuterFichierSQL|FileWriteAllTextUTF8|SilActionDuplication|SilActionSuppression|SilLancerApplication|StringListDeleteLine|StringListInsertLine|FileReadAllTextUTF8|MacroExecuterAction|PathExtractFileName|SilActionAnnulation|SilActionTraitement|SilActionValidation|SilAfficherDocument|SilDisplayLastError|SilGetDroitCreation|SilRafraichirMasque|PathExpandFileName|PathExtractFileExt|SilActionFermeture|SilActionModeListe|SilActionPrecedent|SilAfficherMessage|SilAfficherPageWeb|SilAfficherRequete|SilExecuterActions|SilExecuterRequete|SilExporterDonnees|SilImporterFichier|SilLancerProgramme|SilSelectFileMulti|PathChangeFileExt|SilActionCreation|SilActionForceTri|SilActionModePage|SilAfficherGraphe|SilExecuterMasque|SilExecuterRegleA|SilExecuterRegleN|SilInitialiserVUA|SilInitialiserVUN|StringListAddLine|StringListGetLine|StringListSetLine|FileWriteAllText|SilActionSuivant|SilAfficherTexte|SilExecuterRegle|SilModifierChamp|SilRemoveFileERP|StringListNbLine|FileReadAllText|SilExecuterBeep|SilExecuterEtat|SilFermerMasque|SilGetLastError|SilIsDateOpened|PathExtractDir|SilActionDebut|SilCalcDateNbj|SilExecuterDde|SilLireAbaqueA|SilLireAbaqueN|SilRelireFiche|SilSelectImage|SilVoirMessage|SetStatusInfo|SilAddFileERP|SilFocusChamp|SilInitMasque|SilSelectDate|SilSelectFile|SilVoirBitmap|StringReplace|SilGetWeight|PathCombine|SilBIReport|SilCreerCSV|SilSendMail|FileDelete|FileExists|FileRename|DirCreate|DirDelete|DirExists|DirRename|DirSelect|URLDecode|URLEncode|FileCopy|FileMove|DirCopy|DirMove|SALDG|SADG|SAFE|SCDN|SDVA|SDVE|SDVR|SEFA|SEFS|SERA|SERI|SERN|SIDO|SLAL|SRAC|SRFE|SSFM|MEA|SAD|SAG|SAM|SAR|SAT|SAW|SCC|SCI|SEA|SEB|SED|SEE|SEF|SEM|SER|SFC|SFM|SGT|SIF|SIM|SLA|SLP|SMC|SRC|SRF|SRM|SSD|SSF|SSI|SVB|SVM)(?=\\s*\\()"
+        },
+        {
+          "name": "support.function.silog",
+          "match": "\\b(?:MAIL|NOTIFICATIONS|KRN)\\.[A-Za-z]\\w*(?=\\s*\\()"
+        }
+      ]
+    },
+    "builtins": {
+      "patterns": [
+        {
+          "name": "support.function.builtin.silog",
+          "match": "(?i)\\b(STRTODAT\\$|REMAINDER|LCASE\\$|LTRIM\\$|RIGHT\\$|RTRIM\\$|UCASE\\$|LEFT\\$|CHR\\$|LOG10|MID\\$|ROUND|STR\\$|CEIL|ABS|COS|INT|KOT|LEN|LOG|MAX|MIN|ORD|POS|SIN|SQR|TAN|VAL|FP|IP)(?=\\s*\\()"
+        },
+        {
+          "name": "support.constant.builtin.silog",
+          "match": "(?i)\\b(DATE\\$|TIME\\$|TIME)(?![\\w$])"
+        }
+      ]
+    },
+    "variables": {
+      "patterns": [
+        {
+          "name": "variable.other.user.silog",
+          "match": "(?i)\\bvu[$%]?(?=\\s*\\()"
+        },
+        {
+          "name": "variable.language.global.silog",
+          "match": "\\b[gp]_[A-Za-z0-9_]+[$%]?"
+        },
+        {
+          "name": "variable.other.previous-value.silog",
+          "match": "\\bm_[A-Za-z][A-Za-z0-9_]*\\.[A-Za-z][A-Za-z0-9_]*[$%]?"
+        },
+        {
+          "name": "variable.other.field.silog",
+          "match": "\\b[A-Za-z][A-Za-z0-9_]*\\.[A-Za-z][A-Za-z0-9_]*[$%]?(?!\\s*\\()"
+        },
+        {
+          "name": "variable.other.code.silog",
+          "match": "\\b[fi]\\d{5}(?:[$%])?(?:\\(\\s*\\w+\\s*\\))?"
+        },
+        {
+          "name": "variable.other.virtual.silog",
+          "match": "\\bv[A-Za-z0-9_]*[$%]"
+        }
+      ]
+    },
+    "constants": {
+      "name": "constant.numeric.silog",
+      "match": "\\b\\d+(?:\\.\\d+)?\\b"
+    },
+    "operators": {
+      "patterns": [
+        {
+          "name": "keyword.operator.logical.silog",
+          "match": "\\b(AND|OR|NOT)\\b"
+        },
+        {
+          "name": "keyword.operator.comparison.silog",
+          "match": "<>|>=|<=|<|>|="
+        },
+        {
+          "name": "keyword.operator.arithmetic.silog",
+          "match": "[-+*/]"
         }
       ]
     }
-  ],
-  "repository": {},
-  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json"
+  }
 }

@@ -2,7 +2,7 @@
   "name": "silog-syntax",
   "displayName": "SILOG Syntax Highlighting",
   "description": "Coloration syntaxique pour le langage de script SILOG",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "publisher": "srthibaultp",
   "license": "MIT",
   "repository": {
@@ -40,6 +40,12 @@
         "language": "silog",
         "scopeName": "source.silog",
         "path": "./syntaxes/silog.tmLanguage.json"
+      }
+    ],
+    "snippets": [
+      {
+        "language": "silog",
+        "path": "./snippets/silog.code-snippets"
       }
     ]
   }
