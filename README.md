@@ -1,6 +1,6 @@
 # SILOG Syntax Highlighting
 
-Coloration syntaxique pour les fichiers `.silog`.
+Coloration syntaxique pour les fichiers SILOG (`.evt` et `.act`).
 
 ## Fonctionnalités
 
