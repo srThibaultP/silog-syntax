@@ -14,10 +14,11 @@
       "name": "comment.line.double-slash.silog",
       "begin": "//",
       "beginCaptures": {
-        "0": { "name": "punctuation.definition.comment.silog" }
+        "0": {
+          "name": "punctuation.definition.comment.silog"
+        }
       },
-      "end": "$",
-      "name": "comment.line.double-slash.silog"
+      "end": "$"
     },
     {
       "name": "string.quoted.double.silog",
@@ -25,12 +26,12 @@
       "end": "\"",
       "patterns": [
         {
-          "match": "\\.",
+          "match": "\\\\.",
           "name": "constant.character.escape.silog"
         }
       ]
     }
   ],
   "repository": {},
-  "scopeName": "source.silog"
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json"
 }

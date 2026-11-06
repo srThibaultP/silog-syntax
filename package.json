@@ -1,17 +1,34 @@
 {
   "name": "silog-syntax",
   "displayName": "SILOG Syntax Highlighting",
-  "description": "Support for the SILOG scripting language",
+  "description": "Coloration syntaxique pour le langage de script SILOG",
   "version": "0.0.1",
-  "publisher": "user",
+  "publisher": "srthibaultp",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/srThibaultP/silog-syntax.git"
+  },
+  "bugs": {
+    "url": "https://github.com/srThibaultP/silog-syntax/issues"
+  },
+  "homepage": "https://github.com/srThibaultP/silog-syntax#readme",
   "engines": {
     "vscode": "^1.50.0"
   },
+  "categories": [
+    "Programming Languages"
+  ],
+  "keywords": [
+    "silog",
+    "syntax",
+    "highlighting"
+  ],
   "contributes": {
     "languages": [
       {
         "id": "silog",
-        "aliases": ["SILOG"],
+        "aliases": ["SILOG", "silog"],
         "extensions": [".silog"],
         "configuration": "./language-configuration.json"
       }
